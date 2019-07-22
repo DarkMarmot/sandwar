@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :sandwar, SandwarWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 7000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -19,7 +19,13 @@ config :sandwar, SandwarWeb.Endpoint,
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
+  ],
+  live_reload: [
+    patterns: [
+      ~r{lib/my_app_web/live/.*(ex)$}
+    ]
   ]
+
 
 # ## SSL Support
 #

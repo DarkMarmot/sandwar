@@ -1,6 +1,8 @@
 defmodule SandwarWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :sandwar
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", SandwarWeb.UserSocket,
     websocket: true,
     longpoll: false
