@@ -3,7 +3,7 @@
 # hardcode secrets, although such is generally not
 # recommended and you have to remember to add this
 # file to your .gitignore.
-use Mix.Config
+import Config
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
@@ -15,3 +15,5 @@ secret_key_base =
 config :sandwar, SandwarWeb.Endpoint,
   http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
   secret_key_base: secret_key_base
+
+config :sandwar, SandwarWeb.Endpoint, server: true

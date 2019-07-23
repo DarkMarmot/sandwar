@@ -5,7 +5,7 @@ defmodule SandwarWeb.Live.SandwarView do
     SandwarWeb.PageView.render("sandwar.html", assigns)
   end
 
-  def mount(_session, socket) do
+  def mount(session, socket) do
     if(connected?(socket), do: :timer.send_interval(100, self(), :tick))
 
     player_id = "p_#{:rand.uniform(10_000_000_000)}"
@@ -18,6 +18,10 @@ defmodule SandwarWeb.Live.SandwarView do
         player_info: nil
       )
 
+      IO.inspect("session")
+      IO.inspect(session)
+    IO.inspect("socket")
+    IO.inspect(socket)
     {:ok, socket}
   end
 
@@ -110,3 +114,5 @@ defmodule SandwarWeb.Live.SandwarView do
 #    assign(socket, :player_info, player_info)
   end
 end
+
+
