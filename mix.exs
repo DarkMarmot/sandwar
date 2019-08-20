@@ -19,7 +19,7 @@ defmodule Sandwar.MixProject do
   def application do
     [
       mod: {Sandwar.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:warzone, :logger, :runtime_tools]
     ]
   end
 
@@ -32,15 +32,18 @@ defmodule Sandwar.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.7"},
+      {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 2.13"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:sandbox, git: "https://github.com/DarkMarmot/elixir_sandbox.git"},
-      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
+      {:ecto, "~> 3.1"},
+      {:sandbox, "~> 0.5"},
+      {:warzone, github: "DarkMarmot/warzone"}
     ]
   end
 end
+

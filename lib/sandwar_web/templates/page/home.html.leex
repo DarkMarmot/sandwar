@@ -1,0 +1,35 @@
+
+<div class="space_layout">
+    <div style="position: relative; display: flex;">
+        <div class="title_fade">Lua</div>
+        <div class="title">Sandbox War</div>
+    </div>
+        <div id="code_block">
+            <div class="flash_note">
+                <%= @code_status %>
+            </div>
+            <div class="fill">
+                <form class="fill" phx-change="submit_code">
+                    <textarea class="text_panel lua_code" placeholder="Lua AI" autofocus name="code_content" phx-change="submit_code"><%= @code_content %></textarea>
+                </form>
+            </div>
+
+            <div >
+                <%= @speed %>
+            </div>
+        </div>
+
+        <div id="space_block">
+
+            <div class="fill space_panel">
+                <div><%= @facing %></div>
+                <div class="ship" style="transform: rotate(<%= @facing %>deg)"></div>
+
+            </div>
+
+        </div>
+
+
+
+</div>
+

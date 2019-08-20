@@ -1,4 +1,4 @@
-# Sandwar
+# LuaChat
 
 To start your Phoenix server:
 

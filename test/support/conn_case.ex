@@ -1,4 +1,4 @@
-defmodule SandwarWeb.ConnCase do
+defmodule LuaChatWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,10 +19,10 @@ defmodule SandwarWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias SandwarWeb.Router.Helpers, as: Routes
+      alias LuaChatWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint SandwarWeb.Endpoint
+      @endpoint LuaChatWeb.Endpoint
     end
   end
 

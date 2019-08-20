@@ -1,4 +1,4 @@
-defmodule SandwarWeb.ChannelCase do
+defmodule LuaChatWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule SandwarWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint SandwarWeb.Endpoint
+      @endpoint LuaChatWeb.Endpoint
     end
   end
 

@@ -1,5 +1,5 @@
-defmodule SandwarWeb.PageControllerTest do
-  use SandwarWeb.ConnCase
+defmodule LuaChatWeb.PageControllerTest do
+  use LuaChatWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

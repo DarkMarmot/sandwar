@@ -2,6 +2,7 @@
 /cover/
 /deps/
 /doc/
+/node_modules/
 /.fetch
 erl_crash.dump
 *.ez

@@ -42,7 +42,7 @@ defmodule SandwarWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_sandwar_key",
-    signing_salt: "Ol6Gwsno"
+    signing_salt: "YtkuhQ0p"
 
   plug SandwarWeb.Router
 end

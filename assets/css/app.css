@@ -1,3 +1,121 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+
+body {
+    /*!*font-family: 'Orbitron', sans-serif;*!*/
+    /*font-family: 'Nanum Gothic', sans-serif;*/
+    font-family: 'Iceland', cursive;
+    color: #ddccff;
+    background: #0f031b;
+    height: 100vh;
+    margin: 0;
+}
+
+.title {
+    position: relative;
+    left: 16px;
+    font-size: 36px;
+    color: #756c87;
+}
+
+.title_fade {
+    position: relative;
+    left: 10px;
+    top: -45px;
+    font-size: 100px;
+    color: #4a4455;
+}
+
+.space_layout {
+    display: grid;
+    grid-template-areas:
+            "header space"
+            "code space";
+    grid-template-rows: 80px 2fr;
+    grid-template-columns: 41fr 59fr;
+    grid-gap: 10px;
+    height: 100vh;
+    margin: 0;
+}
+
+.ship {
+    position: absolute;
+    width: 16px;
+    height: 24px;
+    border-radius: 50% 50% 30% 30%;
+    background-color: #99b37e;
+}
+
+.space_panel {
+    color: #6086aa;
+    padding: 10px;
+    background: #0d1a35;
+    border-radius: 40px;
+    border: 1px solid #566196;
+    resize: none;
+    box-sizing: border-box;
+    height: 100%;
+    box-shadow: 0 0 20px #0d1a35;
+    position: relative;
+}
+
+.text_panel {
+    color: #8899aa;
+    padding: 10px;
+    background: rgb(30, 50, 90);
+    border-radius: 2px;
+    border-color: #8386c1;
+    resize: none;
+    box-sizing: border-box;
+    height: 100%;
+    word-wrap: break-spaces;
+
+}
+
+.text_panel:focus {
+    color: #c3bed6;
+    border-color: #8a8dcb;
+    background: rgb(25, 45, 85);
+    outline: 0;
+}
+
+.flash_note {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #7675bd;
+    font-size: 24px;
+}
+
+.lua_code {
+    font-size: 24px;
+    font-family: 'Share Tech Mono', monospace;
+    /*font-family: monospace;*/
+
+}
+
+#code_block {
+    grid-area: code;
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    position: relative;
+}
+
+#space_block {
+    grid-area: space;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    margin-right: 16px;
+    margin-left: -24px;
+    position: relative;
+}
+
+.fill {
+    display: flex;
+    flex: 1 1 auto;
+}

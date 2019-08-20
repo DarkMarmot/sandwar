@@ -10,6 +10,7 @@ defmodule Sandwar.Application do
     children = [
       # Start the endpoint when the application starts
       SandwarWeb.Endpoint
+
       # Starts a worker by calling: Sandwar.Worker.start_link(arg)
       # {Sandwar.Worker, arg},
     ]
