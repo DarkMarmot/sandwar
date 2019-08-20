@@ -3,7 +3,7 @@
 mix deps.get --only prod
 MIX_ENV=prod mix compile
 
-# Compile assets
+# Compile assets test
 npm install --prefix ./assets
 npm run deploy --prefix ./assets
 mix phx.digest
