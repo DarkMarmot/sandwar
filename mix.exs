@@ -42,8 +42,8 @@ defmodule Sandwar.MixProject do
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
       {:ecto, "~> 3.1"},
       {:sandbox, "~> 0.5"},
-      {:warzone, github: "DarkMarmot/warzone"}
+      {:warzone, github: "DarkMarmot/warzone"},
+      {:oauth2, "~> 2.0"}
     ]
   end
 end
-

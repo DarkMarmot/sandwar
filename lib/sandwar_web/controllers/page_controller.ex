@@ -7,7 +7,7 @@ defmodule SandwarWeb.PageController do
     LiveView.Controller.live_render(conn, SandwarWeb.HomeView, session: %{})
   end
 
-#  def index(conn, _params) do
-#    render(conn, "index.html")
-#  end
+  def sign_in(conn, _params) do
+    render(conn, "index.html")
+  end
 end
