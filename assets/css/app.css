@@ -39,13 +39,7 @@ body {
     margin: 0;
 }
 
-.ship {
-    position: absolute;
-    width: 16px;
-    height: 24px;
-    border-radius: 50% 50% 30% 30%;
-    background-color: #99b37e;
-}
+
 
 .space_panel {
     color: #6086aa;
@@ -114,6 +108,42 @@ body {
     margin-left: -24px;
     position: relative;
 }
+
+.center_point {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: 50%;
+    right: 50%;
+    overflow: visible;
+}
+
+.warzone {
+    position: absolute;
+}
+
+.missile {
+    position: absolute;
+    width: 12px;
+    height: 7px;
+    border-radius: 50%;
+    transform-origin: center;
+    background-color: #96ff8f;
+    box-shadow: 0 0 7px #22ff5e;
+    /*transition: all 1.25s*/
+}
+
+.ship {
+    position: absolute;
+    width: 24px;
+    height: 16px;
+    transform-origin: center;
+    border-radius: 30% 70% 70% 30%;
+    background-color: #606770;
+    /*transition: all 1.25s*/
+
+}
+
 
 .fill {
     display: flex;
