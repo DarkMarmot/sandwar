@@ -48,16 +48,29 @@ defmodule SandwarWeb.HomeView do
 #    |> Map.put(:code_status, get_compilation_status_message(ship.ai_error))
 #    |> Map.to_list()
 
-    display_values = %{
+#    display_values = %{
+#      hull: render_number(ship.hull, 0),
+#      energy: render_number(ship.hull, 0),
+#      speed: render_number(ship.speed, 2),
+#      facing: render_number(ship.facing, 2),
+#      left: "50%",
+#      top: "50%",
+#      code_status: get_compilation_status_message(ship.ai_error)
+#    }
+
+    {:noreply, assign(socket, get_ship_display(ship))}
+  end
+
+  def get_ship_display(ship) do
+    %{
       hull: render_number(ship.hull, 0),
       energy: render_number(ship.hull, 0),
       speed: render_number(ship.speed, 2),
       facing: render_number(ship.facing, 2),
-      position: ship.position,
-      code_status: get_compilation_status_message(ship.ai_error)
+      code_status: get_compilation_status_message(ship.ai_error),
+      missiles: Map.get(ship.display, :missiles, []),
+      ships: Map.get(ship.display, :ships, [])
     }
-
-    {:noreply, assign(socket, display_values)}
   end
 
   def get_compilation_status_message(status) do
@@ -83,7 +96,7 @@ defmodule SandwarWeb.HomeView do
 #    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
 
 
-    {:ok, assign(socket, hull: 0, energy: 0, speed: 0, facing: 0, position: [0, 0], code_content: "", code_status: "")}
+    {:ok, assign(socket, missiles: [], ships: [], hull: 0, energy: 0, speed: 0, facing: 0, position: [0, 0], code_content: "", code_status: "")}
   end
 
 end

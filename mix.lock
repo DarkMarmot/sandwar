@@ -19,5 +19,5 @@
   "ranch": {:hex, :ranch, "1.7.1", "6b1fab51b49196860b733a49c07604465a47bdb78aa10c1c16a3d199f7f8c881", [:rebar3], [], "hexpm"},
   "sandbox": {:hex, :sandbox, "0.5.0", "ffce70be253c6d9a38ea24a95fa8f68c4cfe7ea687327ce7dbaf067943f5362b", [:mix], [{:luerl, "~> 0.4.0", [hex: :luerl, repo: "hexpm", optional: false]}], "hexpm"},
   "telemetry": {:hex, :telemetry, "0.4.0", "8339bee3fa8b91cb84d14c2935f8ecf399ccd87301ad6da6b71c09553834b2ab", [:rebar3], [], "hexpm"},
-  "warzone": {:git, "https://github.com/DarkMarmot/warzone.git", "76b128bc41cff079fc5b3c03092e4890aa0f0d14", []},
+  "warzone": {:git, "https://github.com/DarkMarmot/warzone.git", "2265f628cf49a75766e3c83de1ad147ea6b90d76", []},
 }

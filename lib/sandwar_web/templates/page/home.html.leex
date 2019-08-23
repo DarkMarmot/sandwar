@@ -22,8 +22,28 @@
         <div id="space_block">
 
             <div class="fill space_panel">
+                <div class="center_point">
+                    <div class="warzone">
+                        <%= for missile <- @missiles do %>
+                        <% [x, y] = missile.position %>
+                        <div id="<%= missile.display_id %>" class="missile" style="transform: translate(<%= trunc(x) %>px,<%= trunc(y) %>px) rotate(<%= missile.facing %>deg)" >
+
+                        </div>
+                        <% end %>
+
+                        <%= for ship <- @ships do %>
+                        <% [x, y] = ship.position %>
+                        <% xp = to_string(trunc(x)) <> "px" %>
+                        <% yp = to_string(trunc(y)) <> "px" %>
+                        <div id="<%= ship.display_id %>" class="ship" style="transform: translate(<%= xp %>,<%= yp %>) rotate(<%= trunc(ship.facing) %>deg)" >
+
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
                 <div><%= @facing %></div>
-                <div class="ship" style="transform: rotate(<%= @facing %>deg)"></div>
+                <div id="s2" class="ship" style="transform: rotate(45deg)"></div>
+                <div id="s1" class="ship" style="transform: rotate(<%= @facing %>deg)"></div>
 
             </div>
 
