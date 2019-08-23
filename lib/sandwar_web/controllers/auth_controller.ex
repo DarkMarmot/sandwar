@@ -20,7 +20,7 @@ defmodule SandwarWeb.AuthController do
     conn
     |> put_session(:current_user, user)
     |> put_session(:access_token, client.token.access_token)
-    |> redirect(to: "/chat")
+    |> redirect(to: "/sandwar")
   end
 
   defp authorize_url!("github"), do: GitHub.authorize_url!()
