@@ -106,6 +106,8 @@ defmodule SandwarWeb.HomeView do
 #    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
 
     current_user = Map.get(session, :current_user)
+    IO.inspect(session)
+    IO.puts("cu #{inspect(current_user)}")
     {:ok, assign(socket, current_user: current_user, editing_code: false, missiles: [], ships: [], hull: 0, energy: 0, speed: 0, heading: 0, cloaking_power: 0, scanning_power: 0, scanning_radius: 0, position: [0, 0], code_content: "", code_status: "")}
   end
 
