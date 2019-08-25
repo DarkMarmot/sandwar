@@ -14,5 +14,12 @@ defmodule Sandwar do
     "[ " <> render_number(x, digits) <> ", " <> render_number(y, digits) <> " ]"
   end
 
+  def render_reflected_angle(angle) do
+    keep_angle_between_0_and_360(angle + 180)
+  end
+
+  def keep_angle_between_0_and_360(angle) do
+    angle -  :math.floor(angle/360) * 360
+  end
 
 end

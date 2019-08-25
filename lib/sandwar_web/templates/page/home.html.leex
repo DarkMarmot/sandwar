@@ -14,7 +14,7 @@
         <div class="center_point">
             <!--<div class="centered_transform_holder" >-->
                 <div class="scan_circle" style="left:  <%= @scanning_radius * -1 %>px; top:  <%= @scanning_radius * -1 %>px; width: <%= @scanning_radius * 2 %>px; height: <%= @scanning_radius * 2 %>px;"></div>
-            <div class="directional_pointer" style="transform-origin: top left; transform: rotate(<%= trunc(@heading) %>deg); width: <%= @scanning_radius %>px;"></div>
+            <div class="directional_pointer" style="transform-origin: top left; transform: rotate(<%= -(trunc(@heading)) %>deg); width: <%= @scanning_radius %>px;"></div>
             <!--</div>-->
         </div>
         <div class="grid_h"></div>
