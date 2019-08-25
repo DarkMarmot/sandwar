@@ -23,12 +23,12 @@ defmodule SandwarWeb.HomeView do
 
 
 
-  def handle_event("submit_cats", _value, socket) do
-    {:noreply, assign(socket, deploy_step: "Cats deploy...")}
+  def handle_event("show_code", _value, socket) do
+    {:noreply, assign(socket, editing_code: true)}
   end
 
-  def handle_event("eat_cats", _value, socket) do
-    {:noreply, assign(socket, deploy_step: "Cats are yummy...")}
+  def handle_event("hide_code", _value, socket) do
+    {:noreply, assign(socket, editing_code: false)}
   end
 
   def handle_event("submit_message", value, socket) do
@@ -62,11 +62,16 @@ defmodule SandwarWeb.HomeView do
   end
 
   def get_ship_display(ship) do
+    heading = if ship.speed > 0, do: ship.heading, else: ship.facing
     %{
       hull: render_number(ship.hull, 0),
-      energy: render_number(ship.hull, 0),
+      energy: render_number(ship.energy, 0),
       speed: render_number(ship.speed, 2),
-      facing: render_number(ship.facing, 2),
+      heading: heading,
+      position: ship.position,
+      scanning_radius: ship.scanning_power,
+      scanning_power: render_number(ship.scanning_power, 0),
+      cloaking_power: render_number(ship.cloaking_power, 0),
       code_status: get_compilation_status_message(ship.ai_error),
       missiles: Map.get(ship.display, :missiles, []),
       ships: Map.get(ship.display, :ships, [])
@@ -87,6 +92,11 @@ defmodule SandwarWeb.HomeView do
     :erlang.float_to_binary(number / 1, [decimals: digits])
   end
 
+  def terminate(reason, %{} = socket) do
+    Warzone.BattleServer.leave()
+    reason
+  end
+
   def mount(_session, socket) do
 
     if connected?(socket), do: Warzone.BattleServer.join()
@@ -96,7 +106,7 @@ defmodule SandwarWeb.HomeView do
 #    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
 
 
-    {:ok, assign(socket, missiles: [], ships: [], hull: 0, energy: 0, speed: 0, facing: 0, position: [0, 0], code_content: "", code_status: "")}
+    {:ok, assign(socket, editing_code: false, missiles: [], ships: [], hull: 0, energy: 0, speed: 0, heading: 0, cloaking_power: 0, scanning_power: 0, scanning_radius: 0, position: [0, 0], code_content: "", code_status: "")}
   end
 
 end

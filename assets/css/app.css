@@ -3,63 +3,176 @@
 @import "./phoenix.css";
 
 body {
-    /*!*font-family: 'Orbitron', sans-serif;*!*/
-    /*font-family: 'Nanum Gothic', sans-serif;*/
     font-family: 'Iceland', cursive;
     color: #ddccff;
     background: #0f031b;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
+}
+
+.code_box{
+    position: absolute;
+    z-index: 10;
+    top: 90px;
+    height: calc(100vh - 120px);
+    width: 61vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.code_form{
+    position: relative;
+    flex: 1;
+    margin: 16px;
+    opacity: 1;
+}
+
+.nebula{
+    position: absolute;
+    background-image: url("/images/nasa_carina_dark.jpg");
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.fullscreen {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.sandwar_header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
+    top: 0;
+    height: 250px;
+    background: linear-gradient(150deg, rgb(112, 23, 58) 0%, rgba(9,9,121,0) 25%);
+    z-index: 1;
+}
+
+.sandwar_battle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.stat_box {
+    position: absolute;
+    top: 55px;
+    right: 30px;
+    background: rgba(68, 8, 51, 0.8);
+    padding-bottom: 14px;
+    width: 350px;
+    border-radius: 2px 2px 2px 10px;
+    border-left: 1px solid rgba(255, 255, 255, .25);
+    border-top: 1px solid rgba(255, 255, 255, .25);
+}
+
+.stat {
+    position: relative;
+    height: 26px;
+}
+
+.stat_num {
+    text-align: left;
+    position: absolute;
+    width: 150px;
+    right: 0;
+    font-size: 24px;
+    color: rgba(195, 100, 92, 0.8);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+}
+
+.stat_label {
+    text-align: right;
+    top: 5px;
+    width: 200px;
+    position: absolute;
+    right: 170px;
+    font-size: 18px;
+    color: rgba(255, 95, 124, .8);
+    text-shadow: 1px 1px 3px 0;
+}
+
+.grid_h {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50vh;
+    bottom: 50vh;
+    border-top: 1px dashed rgba(110, 170, 255, 0.5)
+}
+
+
+.grid_v {
+    position: absolute;
+    left: 50vw;
+    right: 50vw;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dashed rgba(110, 170, 255, 0.5);
+}
+
+
+.grid_self {
+    position: absolute;
+    left: calc(50vw - 25px);
+    top: calc(50vh - 25px);
+    width: 50px;
+    height: 50px;
+    border: 1px dashed rgba(110, 170, 255, 0.5);
+    background-color: rgba(9, 62, 226, 0.25);
+}
+
+.grid_self_circle {
+    position: absolute;
+    left: calc(50vw - 36px);
+    top: calc(50vh - 36px);
+    width: 72px;
+    height: 72px;
+    border: 1px dashed rgba(110, 170, 255, 0.5);
+    border-radius: 50%;
+}
+
+.grid_thrust_circle_holder {
+    position: absolute;
+
 }
 
 .title {
-    position: relative;
+    position: absolute;
     left: 16px;
     font-size: 36px;
-    color: #756c87;
+    left: 160px;
+    top: 20px;
+    color: rgba(135, 31, 112, 0.75);
 }
 
 .title_fade {
-    position: relative;
+    position: absolute;
     left: 10px;
-    top: -45px;
+    top: -35px;
     font-size: 100px;
-    color: #4a4455;
+    color: #b085ff4d;
+    text-shadow: 3px 3px 12px rgba(36, 7, 19, 0.75);
 }
 
-.space_layout {
-    display: grid;
-    grid-template-areas:
-            "header space"
-            "code space";
-    grid-template-rows: 80px 2fr;
-    grid-template-columns: 41fr 59fr;
-    grid-gap: 10px;
-    height: 100vh;
-    margin: 0;
-}
-
-
-
-.space_panel {
-    color: #6086aa;
-    padding: 10px;
-    background: #0d1a35;
-    border-radius: 40px;
-    border: 1px solid #566196;
-    resize: none;
-    box-sizing: border-box;
-    height: 100%;
-    box-shadow: 0 0 20px #0d1a35;
-    position: relative;
-}
 
 .text_panel {
     color: #8899aa;
     padding: 10px;
-    background: rgb(30, 50, 90);
-    border-radius: 2px;
-    border-color: #8386c1;
+    background: linear-gradient(150deg, rgba(25, 45, 85, .5) 0%, rgba(25, 45, 85, .25) 75%);
+    border-radius: 2px 2px 20px 2px;
+
+    border-color: rgba(140, 140, 200, .5);
     resize: none;
     box-sizing: border-box;
     height: 100%;
@@ -69,47 +182,49 @@ body {
 
 .text_panel:focus {
     color: #c3bed6;
-    border-color: #8a8dcb;
-    background: rgb(25, 45, 85);
+    border-color: rgba(140, 140, 200, 1);
+
+    /*background: rgb(25, 45, 85);*/
+    background: linear-gradient(150deg, rgba(25, 45, 85, 1) 0%, rgba(25, 45, 85, .9) 75%);
     outline: 0;
 }
 
 .flash_note {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: absolute;
+    top: 12px;
+    flex: 1;
+    right: 20px;
     text-align: center;
     color: #7675bd;
+    font-size: 24px;
+}
+
+.edit_note {
+    position: absolute;
+    top: -20px;
+    flex: 1;
+    left: 20px;
+    text-align: left;
+    width: 200px;
+    color: #cc70c7;
     font-size: 24px;
 }
 
 .lua_code {
     font-size: 24px;
     font-family: 'Share Tech Mono', monospace;
-    /*font-family: monospace;*/
-
-}
-
-#code_block {
-    grid-area: code;
-    display: flex;
-    flex-direction: column;
-    margin-left: 16px;
-    position: relative;
-}
-
-#space_block {
-    grid-area: space;
-    display: flex;
-    flex-direction: column;
-    margin-top: 16px;
-    margin-right: 16px;
-    margin-left: -24px;
-    position: relative;
 }
 
 .center_point {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: 50%;
+    right: 50%;
+    overflow: visible;
+}
+
+.h_mark {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -124,26 +239,40 @@ body {
 
 .missile {
     position: absolute;
-    width: 12px;
-    height: 7px;
     border-radius: 50%;
     transform-origin: center;
-    background-color: #96ff8f;
-    box-shadow: 0 0 7px #22ff5e;
-    /*transition: all 1.25s*/
+    background: radial-gradient(circle, rgba(255,255,255,1) 35%, rgba(255,183,227,1) 67%, rgba(255,0,247,0.5) 86%, rgba(121,9,72,0) 100%);
 }
 
 .ship {
     position: absolute;
-    width: 24px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     transform-origin: center;
-    border-radius: 30% 70% 70% 30%;
-    background-color: #606770;
-    /*transition: all 1.25s*/
-
+    border-radius: 50%;
+    background-color: #70173a;
+    border: 1px solid rgba(255, 255, 255, .2);
+    transform-origin: -50% -50%;
 }
 
+.centered_transform_holder {
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.scan_circle {
+    position: absolute;
+    background: rgba(13, 26, 53, 0.2);
+    border: 1px dashed rgba(110, 170, 255, 0.5);
+    border-radius: 50%;
+}
+
+.directional_pointer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top: 1px dashed rgba(166, 14, 255, 0.5)
+}
 
 .fill {
     display: flex;

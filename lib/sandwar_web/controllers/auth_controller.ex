@@ -14,7 +14,6 @@ defmodule SandwarWeb.AuthController do
 
   def callback(conn, %{"provider" => provider, "code" => code}) do
     client = get_token!(provider, code)
-
     user = get_user!(provider, client)
 
     conn
