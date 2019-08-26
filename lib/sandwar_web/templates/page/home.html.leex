@@ -1,104 +1,107 @@
+<%= if @current_user do %>
 
-<div class="fullscreen">
-<div class="sandwar_header">
-    <div style="position: relative; display: flex;">
-        <div class="title_fade">Lua</div>
-        <div class="title">Sandbox War</div>
+    <div class="fullscreen">
+    <div class="sandwar_header">
+        <div style="position: relative; display: flex;">
+            <div class="title_fade">Lua</div>
+            <div class="title">Sandbox War</div>
+        </div>
     </div>
-</div>
 
-<div class="sandwar_battle">
+    <div class="sandwar_battle">
 
-    <div class="fill space_panel">
-        <div class="nebula"></div>
-        <div class="center_point">
-            <!--<div class="centered_transform_holder" >-->
-                <div class="scan_circle" style="left:  <%= @scanning_radius * -1 %>px; top:  <%= @scanning_radius * -1 %>px; width: <%= @scanning_radius * 2 %>px; height: <%= @scanning_radius * 2 %>px;"></div>
-            <div class="directional_pointer" style="transform-origin: top left; transform: rotate(<%= -(trunc(@heading)) %>deg); width: <%= @scanning_radius %>px;"></div>
+        <div class="fill space_panel">
+            <div class="nebula"></div>
+            <div class="center_point">
+                <!--<div class="centered_transform_holder" >-->
+                    <div class="scan_circle" style="left:  <%= @scanning_radius * -1 %>px; top:  <%= @scanning_radius * -1 %>px; width: <%= @scanning_radius * 2 %>px; height: <%= @scanning_radius * 2 %>px;"></div>
+                <div class="directional_pointer" style="transform-origin: top left; transform: rotate(<%= -(trunc(@heading)) %>deg); width: <%= @scanning_radius %>px;"></div>
+                <!--</div>-->
+            </div>
+            <div class="grid_h"></div>
+            <div class="grid_v"></div>
+            <div class="grid_self"></div>
+            <div class="grid_self_circle"></div>
+            <div class="stat_box">
+                <div class="stat">
+                    <div class="stat_label">Welcome, <%= @current_user.name %> !</div>
+            <div class="stat_box">
+                <div class="stat">
+                    <div class="stat_num"><%= @hull %></div>
+                    <div class="stat_label">hull integrity</div>
+                </div>
+                <div class="stat">
+                    <div class="stat_num"><%= @energy %></div>
+                    <div class="stat_label">energy</div>
+                </div>
+                <div class="stat">
+                    <div class="stat_num"><%= @speed %> au/s</div>
+                    <div class="stat_label">speed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat_num"><%= Sandwar.render_number(@heading, 1) %>&deg; </div>
+                    <div class="stat_label">heading</div>
+                </div>
+                <div class="stat">
+                    <div class="stat_num"><%= Sandwar.render_position(@position, 1) %></div>
+                    <div class="stat_label">position</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat_num"><%= @scanning_power %> au </div>
+                    <div class="stat_label">scanning range</div>
+                </div>
+                <div class="stat">
+                    <div class="stat_num"><%= @cloaking_power %> au </div>
+                    <div class="stat_label">cloaking range</div>
+                </div>
+
+            </div>
+
+            <div class="flash_note"><%= @code_status %></div>
+
+            <div class="center_point">
+                <div class="warzone">
+
+                    <%= for missile <- @missiles do %>
+                    <% size = to_string(trunc(:math.sqrt(missile.power) + 8)) <> "px" %>
+                    <% xp = to_string(trunc(missile.x)) <> "px" %>
+                    <% yp = to_string(trunc(-missile.y)) <> "px" %>
+                    <div style="transform: translate(-50%, -50%); position: absolute;">
+                        <div id="<%= missile.name %>" class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>) rotate(<%= trunc(missile.facing) %>deg)" ></div>
+                    </div>
+
+                    <% end %>
+
+                    <%= for ship <- @ships do %>
+                    <% xp = to_string(trunc(ship.x)) <> "px" %>
+                    <% yp = to_string(trunc(-ship.y)) <> "px" %>
+                    <div class="centered_transform_holder" >
+                        <div id="<%= ship.name %>" class="ship" style="position: relative; transform: translate(<%= xp %>,<%= yp %>)" ></div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="code_box">
+            <div class="edit_note" phx-click="show_code" style="visibility: <%= if @editing_code, do: "hidden", else: "" %>;">edit lua code</div>
+            <div class="edit_note" phx-click="hide_code" style="visibility: <%= if @editing_code == false, do: "hidden", else: "" %>;">show lua code</div>
+
+
+            <!--<div class="fill">-->
+                <form class="code_form" phx-change="submit_code" style="visibility: <%= if @editing_code == false, do: "hidden", else: "" %>;">
+                    <textarea class="text_panel lua_code" autofocus="true" placeholder="Lua AI" autofocus name="code_content" phx-change="submit_code"><%= @code_content %></textarea>
+
+        </form>
+
             <!--</div>-->
         </div>
-        <div class="grid_h"></div>
-        <div class="grid_v"></div>
-        <div class="grid_self"></div>
-        <div class="grid_self_circle"></div>
-        <div class="stat_box">
-            <div class="stat">
-                <div class="stat_num"><%= @hull %></div>
-                <div class="stat_label">hull integrity</div>
-            </div>
-            <div class="stat">
-                <div class="stat_num"><%= @energy %></div>
-                <div class="stat_label">energy</div>
-            </div>
-            <div class="stat">
-                <div class="stat_num"><%= @speed %> au/s</div>
-                <div class="stat_label">speed</div>
-            </div>
-            <div class="stat">
-                <div class="stat_num"><%= Sandwar.render_number(@heading, 1) %>&deg; </div>
-                <div class="stat_label">heading</div>
-            </div>
-            <div class="stat">
-                <div class="stat_num"><%= Sandwar.render_position(@position, 1) %></div>
-                <div class="stat_label">position</div>
-            </div>
 
-            <div class="stat">
-                <div class="stat_num"><%= @scanning_power %> au </div>
-                <div class="stat_label">scanning range</div>
-            </div>
-            <div class="stat">
-                <div class="stat_num"><%= @cloaking_power %> au </div>
-                <div class="stat_label">cloaking range</div>
-            </div>
-
-        </div>
-
-        <div class="flash_note"><%= @code_status %></div>
-
-        <div class="center_point">
-            <div class="warzone">
-
-                <%= for missile <- @missiles do %>
-                <% size = to_string(trunc(:math.sqrt(missile.power) + 8)) <> "px" %>
-                <% xp = to_string(trunc(missile.x)) <> "px" %>
-                <% yp = to_string(trunc(-missile.y)) <> "px" %>
-                <div style="transform: translate(-50%, -50%); position: absolute;">
-                    <div id="<%= missile.name %>" class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>) rotate(<%= trunc(missile.facing) %>deg)" ></div>
-                </div>
-
-                <% end %>
-
-                <%= for ship <- @ships do %>
-                <% xp = to_string(trunc(ship.x)) <> "px" %>
-                <% yp = to_string(trunc(-ship.y)) <> "px" %>
-                <div class="centered_transform_holder" >
-                    <div id="<%= ship.name %>" class="ship" style="position: relative; transform: translate(<%= xp %>,<%= yp %>)" ></div>
-                </div>
-                <% end %>
-            </div>
-        </div>
 
     </div>
 
-    <div class="code_box">
-        <div class="edit_note" phx-click="show_code" style="visibility: <%= if @editing_code, do: "hidden", else: "" %>;">edit lua code</div>
-        <div class="edit_note" phx-click="hide_code" style="visibility: <%= if @editing_code == false, do: "hidden", else: "" %>;">show lua code</div>
-
-
-        <!--<div class="fill">-->
-            <form class="code_form" phx-change="submit_code" style="visibility: <%= if @editing_code == false, do: "hidden", else: "" %>;">
-                <textarea class="text_panel lua_code" autofocus="true" placeholder="Lua AI" autofocus name="code_content" phx-change="submit_code"><%= @code_content %></textarea>
-
-    </form>
-
-        <!--</div>-->
     </div>
-
-
-</div>
-
-</div>
-
-
+<% end %>
 

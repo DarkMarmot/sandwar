@@ -6,8 +6,8 @@ defmodule SandwarWeb.HomeView do
   end
 
   def handle_event("submit_code", value, socket) do
-#    IO.puts("moo")
-#    IO.inspect(value)
+    #    IO.puts("moo")
+    #    IO.inspect(value)
 
     code_content = Map.get(value, "code_content")
     Warzone.BattleServer.submit_code(code_content)
@@ -20,9 +20,6 @@ defmodule SandwarWeb.HomeView do
     {:noreply, assign(socket, deploy_step: "Load...")}
   end
 
-
-
-
   def handle_event("show_code", _value, socket) do
     {:noreply, assign(socket, editing_code: true)}
   end
@@ -34,35 +31,40 @@ defmodule SandwarWeb.HomeView do
   def handle_event("submit_message", value, socket) do
     IO.inspect("message was: #{inspect(value)}")
     msg = get_in(value, ["message", "content"])
-    {:noreply, update(socket, :messages, fn messages -> [msg | Enum.reverse(messages)] |> Enum.take(10) |> Enum.reverse() end)}
+
+    {:noreply,
+     update(socket, :messages, fn messages ->
+       [msg | Enum.reverse(messages)] |> Enum.take(10) |> Enum.reverse()
+     end)}
   end
 
   def handle_info({:ship_status, ship}, socket) do
     v = inspect(ship.velocity)
-#    status = inspect(ship.ai_error)
-#    "...compilation sucessful, ai engaged..."
+    #    status = inspect(ship.ai_error)
+    #    "...compilation sucessful, ai engaged..."
 
-#    display_values =
-#    [:speed, :facing, :position]
-#    |> Enum.into(%{}, fn k -> {k, Map.get(ship, k)} end)
-#    |> Map.put(:code_status, get_compilation_status_message(ship.ai_error))
-#    |> Map.to_list()
+    #    display_values =
+    #    [:speed, :facing, :position]
+    #    |> Enum.into(%{}, fn k -> {k, Map.get(ship, k)} end)
+    #    |> Map.put(:code_status, get_compilation_status_message(ship.ai_error))
+    #    |> Map.to_list()
 
-#    display_values = %{
-#      hull: render_number(ship.hull, 0),
-#      energy: render_number(ship.hull, 0),
-#      speed: render_number(ship.speed, 2),
-#      facing: render_number(ship.facing, 2),
-#      left: "50%",
-#      top: "50%",
-#      code_status: get_compilation_status_message(ship.ai_error)
-#    }
+    #    display_values = %{
+    #      hull: render_number(ship.hull, 0),
+    #      energy: render_number(ship.hull, 0),
+    #      speed: render_number(ship.speed, 2),
+    #      facing: render_number(ship.facing, 2),
+    #      left: "50%",
+    #      top: "50%",
+    #      code_status: get_compilation_status_message(ship.ai_error)
+    #    }
 
     {:noreply, assign(socket, get_ship_display(ship))}
   end
 
   def get_ship_display(ship) do
     heading = if ship.speed > 0, do: ship.heading, else: ship.facing
+
     %{
       hull: render_number(ship.hull, 0),
       energy: render_number(ship.energy, 0),
@@ -89,7 +91,7 @@ defmodule SandwarWeb.HomeView do
   end
 
   def render_number(number, digits) do
-    :erlang.float_to_binary(number / 1, [decimals: digits])
+    :erlang.float_to_binary(number / 1, decimals: digits)
   end
 
   def terminate(reason, %{} = socket) do
@@ -98,17 +100,32 @@ defmodule SandwarWeb.HomeView do
   end
 
   def mount(session, socket) do
-
     if connected?(socket), do: Warzone.BattleServer.join()
 
-#    data = %{code_content: "hello", code_error: "cat man"}
-#    types = %{code_content: :string, code_error: :string}
-#    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
+    #    data = %{code_content: "hello", code_error: "cat man"}
+    #    types = %{code_content: :string, code_error: :string}
+    #    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
 
     current_user = Map.get(session, :current_user)
     IO.inspect(session)
     IO.puts("cu #{inspect(current_user)}")
-    {:ok, assign(socket, current_user: current_user, editing_code: false, missiles: [], ships: [], hull: 0, energy: 0, speed: 0, heading: 0, cloaking_power: 0, scanning_power: 0, scanning_radius: 0, position: [0, 0], code_content: "", code_status: "")}
-  end
 
+    {:ok,
+     assign(socket,
+       current_user: current_user,
+       editing_code: false,
+       missiles: [],
+       ships: [],
+       hull: 0,
+       energy: 0,
+       speed: 0,
+       heading: 0,
+       cloaking_power: 0,
+       scanning_power: 0,
+       scanning_radius: 0,
+       position: [0, 0],
+       code_content: "",
+       code_status: ""
+     )}
+  end
 end
