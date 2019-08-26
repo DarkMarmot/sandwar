@@ -7,8 +7,7 @@ defmodule SandwarWeb.PageController do
     if conn.assigns.current_user do
       LiveView.Controller.live_render(conn, SandwarWeb.HomeView, session: %{})
     else
-      conn
-      |> redirect(to: "/")
+      render(conn, "index.html")
     end
   end
 
