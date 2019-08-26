@@ -3,6 +3,10 @@
       <%= if @current_user do %>
         <h2>Welcome, <%= @current_user.name %>!</h2>
         <img src="<%= @current_user.avatar %>" class="img-circle"/>
+        <a class="btn btn-primary btn-lg" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :index %>">
+          <i class="fa fa-github"></i>
+          Play Sandwar
+        </a>
         <%= link "Logout", to: SandwarWeb.Router.Helpers.auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
       <% else %>
         <br>
