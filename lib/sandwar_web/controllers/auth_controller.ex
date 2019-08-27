@@ -27,6 +27,6 @@ defmodule SandwarWeb.AuthController do
 
   defp get_user!("github", client) do
     %{body: user} = OAuth2.Client.get!(client, "/user")
-    %{name: user["name"], avatar: user["avatar_url"]}
+    %{name: user["name"], login: user["login"], avatar: user["avatar_url"]}
   end
 end

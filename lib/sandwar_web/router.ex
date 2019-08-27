@@ -20,6 +20,7 @@ defmodule SandwarWeb.Router do
 
     get "/", PageController, :sign_in
     get("/sandwar", PageController, :index)
+    get("/sandwar-anon", PageController, :anon)
   end
 
   scope "/auth", SandwarWeb do
