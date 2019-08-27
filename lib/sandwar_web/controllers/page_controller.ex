@@ -6,7 +6,7 @@ defmodule SandwarWeb.PageController do
   def index(conn, _) do
     if conn.assigns.current_user do
       LiveView.Controller.live_render(conn, SandwarWeb.HomeView,
-        session: %{user_name: conn.assigns.current_user.name}
+        session: %{user_name: conn.assigns.current_user.name, login: conn.assigns.current_user.login}
       )
     else
       render(conn, "index.html")

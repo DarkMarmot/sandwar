@@ -108,6 +108,7 @@ defmodule SandwarWeb.HomeView do
 
     current_user = Map.get(session, :current_user)
     user_name = Map.get(session, :user_name)
+    login = Map.get(session, :login)
     IO.inspect(session)
     IO.puts("cu #{inspect(current_user)}")
 
@@ -115,6 +116,7 @@ defmodule SandwarWeb.HomeView do
      assign(socket,
        current_user: current_user,
        user_name: user_name,
+       login: login,
        editing_code: false,
        missiles: [],
        ships: [],
