@@ -14,7 +14,7 @@ defmodule SandwarWeb.PageController do
   end
 
   def anon(conn, _) do
-    LiveView.Controller.live_render(conn, SandwarWeb.HomeView,
+    LiveView.Controller.live_render(conn, SandwarWeb.AnonView,
       session: %{user_name: conn.assigns.current_user.name}
     )
   end
