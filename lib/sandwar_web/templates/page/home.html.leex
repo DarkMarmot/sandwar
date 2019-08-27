@@ -21,10 +21,12 @@
             <div class="grid_self"></div>
             <div class="grid_self_circle"></div>
             <div class="stat_box">
+                <%= if @user_name do %>
                 <div class="stat">
                     <div class="stat_num"><%= @user_name %></div>
                     <div class="stat_label">name</div>
                 </div>
+                <% end %>
                 <div class="stat">
                     <div class="stat_num"><%= @hull %></div>
                     <div class="stat_label">hull integrity</div>
