@@ -11,6 +11,10 @@ defmodule SandwarWeb.PageController do
     end
   end
 
+  def anon(conn, _) do
+    LiveView.Controller.live_render(conn, SandwarWeb.HomeView, session: %{})
+  end
+
   def sign_in(conn, _params) do
     render(conn, "index.html")
   end

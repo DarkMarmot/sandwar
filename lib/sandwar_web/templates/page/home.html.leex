@@ -16,12 +16,15 @@
                 <div class="directional_pointer" style="transform-origin: top left; transform: rotate(<%= -(trunc(@heading)) %>deg); width: <%= @scanning_radius %>px;"></div>
                 <!--</div>-->
             </div>
-            <div class="stat_label"> Welcome!</div>
             <div class="grid_h"></div>
             <div class="grid_v"></div>
             <div class="grid_self"></div>
             <div class="grid_self_circle"></div>
             <div class="stat_box">
+                <div class="stat">
+                    <div class="stat_num">Bishoy</div>
+                    <div class="stat_label">name</div>
+                </div>
                 <div class="stat">
                     <div class="stat_num"><%= @hull %></div>
                     <div class="stat_label">hull integrity</div>

@@ -17,5 +17,9 @@
           Sign in with GitHub
         </a>
 
+        <a class="btn btn-primary btn-lg" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :anon %>">
+          <i class="fa fa-github"></i>
+          Skip Login
+        </a>
       <% end %>
 </html>
