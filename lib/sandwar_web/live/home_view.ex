@@ -49,17 +49,22 @@ defmodule SandwarWeb.HomeView do
       missiles: Map.get(ship.display, :missiles, []),
       ships: Map.get(ship.display, :ships, []),
       playing: ship.playing,
-      spawn_counter: ship.spawn_counter
+      spawn_counter: ship.spawn_counter,
+      messages: ship.messages,
+      missile_color: ship.missile_color,
+      stardate: ship.stardate
     }
   end
 
   def get_compilation_status_message(status) do
     case status do
-      nil -> "...compilation sucessful, ai engaged..."
+      :ai_ready -> "...ai ready, preparing to spawn..."
+      :ai_engaged -> "...compilation successful, ai engaged..."
       :ai_timeout_error -> "...ai crawling, timeout error..."
       :ai_runtime_error -> "...system crashing, ai runtime error..."
       :ai_could_not_compile -> "...ai compilation failure..."
-      :no_ai -> "...ai cleared, preparing to compile..."
+      :missing_ai -> "...ai reset, preparing to compile..."
+      nil -> "...ai reset, preparing to compile..."
     end
   end
 
@@ -86,6 +91,7 @@ defmodule SandwarWeb.HomeView do
 
     {:ok,
      assign(socket,
+       missile_color: 0,
        current_user: current_user,
        user_name: user_name,
        login: login,
@@ -103,7 +109,9 @@ defmodule SandwarWeb.HomeView do
        code_content: "",
        code_status: "",
        playing: false,
-       spawn_counter: 30
+       spawn_counter: 30,
+       messages: [],
+       stardate: 0
      )}
   end
 end

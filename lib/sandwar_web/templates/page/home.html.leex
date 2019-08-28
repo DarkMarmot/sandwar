@@ -20,6 +20,8 @@
             <div class="grid_v"></div>
             <div class="grid_self"></div>
             <div class="grid_self_circle"></div>
+
+
             <div class="stat_box">
 
                 <div class="stat">
@@ -70,6 +72,13 @@
 
             </div>
 
+            <div style="position: absolute; bottom: 0; right: 0; width: 400px; height: 500px; font-size: 20px;">
+                <%= for msg <- @messages do %>
+                <div style="position: relative;"><%= msg.text %></div>
+                <% end %>
+            </div>
+
+
             <div class="flash_note"><%= @code_status %></div>
 
             <div class="center_point">
@@ -80,7 +89,7 @@
                     <% xp = to_string(trunc(missile.x)) <> "px" %>
                     <% yp = to_string(trunc(-missile.y)) <> "px" %>
                     <div style="transform: translate(-50%, -50%); position: absolute;">
-                        <div class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>);" ></div>
+                        <div class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>); background: radial-gradient(circle, rgba(255,255,255,1) 0%, hsla(<%= missile.color %>,100%,50%,1) 40%,  hsla(<%= missile.color %>,100%,100%,0) 100%);" ></div>
                     </div>
 
                     <% end %>
