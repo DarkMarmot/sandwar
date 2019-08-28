@@ -14,7 +14,11 @@ defmodule SandwarWeb.PageController do
   end
 
   def anon(conn, _) do
-    LiveView.Controller.live_render(conn, SandwarWeb.AnonView, session: %{})
+    IO.inspect("conn: #{inspect(conn)}")
+    LiveView.Controller.live_render(conn, SandwarWeb.HomeView,
+      session: %{}
+    )
+#    LiveView.Controller.live_render(conn, SandwarWeb.AnonView, session: %{})
   end
 
   def sign_in(conn, _params) do

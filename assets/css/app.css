@@ -84,7 +84,7 @@ body {
 .stat_num {
     text-align: left;
     position: absolute;
-    width: 150px;
+    width: 180px;
     right: 0;
     font-size: 24px;
     color: rgba(195, 100, 92, 0.8);
@@ -94,9 +94,9 @@ body {
 .stat_label {
     text-align: right;
     top: 5px;
-    width: 200px;
+    width: 150px;
     position: absolute;
-    right: 170px;
+    left: 0;
     font-size: 18px;
     color: rgba(255, 95, 124, .8);
     text-shadow: 1px 1px 3px 0;

@@ -21,10 +21,14 @@
             <div class="grid_self"></div>
             <div class="grid_self_circle"></div>
             <div class="stat_box">
+
                 <div class="stat">
                     <div class="stat_num"><%= @login %></div>
                     <div class="stat_label">name</div>
                 </div>
+
+                <%= if @playing do %>
+
                 <div class="stat">
                     <div class="stat_num"><%= @hull %></div>
                     <div class="stat_label">hull integrity</div>
@@ -55,6 +59,15 @@
                     <div class="stat_label">cloaking range</div>
                 </div>
 
+                <% else %>
+
+                <div class="stat">
+                    <div class="stat_num"><%= @spawn_counter %>  </div>
+                    <div class="stat_label">Spawning in </div>
+                </div>
+
+                <% end %>
+
             </div>
 
             <div class="flash_note"><%= @code_status %></div>
@@ -63,7 +76,7 @@
                 <div class="warzone">
 
                     <%= for missile <- @missiles do %>
-                    <% size = to_string(trunc(:math.sqrt(missile.power) + 8)) <> "px" %>
+                    <% size = to_string(trunc(missile.power + 1)) <> "px" %>
                     <% xp = to_string(trunc(missile.x)) <> "px" %>
                     <% yp = to_string(trunc(-missile.y)) <> "px" %>
                     <div style="transform: translate(-50%, -50%); position: absolute;">
@@ -76,7 +89,9 @@
                     <% xp = to_string(trunc(ship.x)) <> "px" %>
                     <% yp = to_string(trunc(-ship.y)) <> "px" %>
                     <div class="centered_transform_holder" >
-                        <div id="<%= ship.name %>" class="ship" style="position: relative; transform: translate(<%= xp %>,<%= yp %>)" ></div>
+                        <div id="<%= ship.name %>" class="ship" style="position: relative; transform: translate(<%= xp %>,<%= yp %>)" >
+                            <div style="position: absolute; transform: translate(-50%, -100%); text-align: center;" > <%= @login %> </div>
+                        </div>
                     </div>
                     <% end %>
                 </div>

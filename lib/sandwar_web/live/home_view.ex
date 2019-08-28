@@ -6,18 +6,9 @@ defmodule SandwarWeb.HomeView do
   end
 
   def handle_event("submit_code", value, socket) do
-    #    IO.puts("moo")
-    #    IO.inspect(value)
-
     code_content = Map.get(value, "code_content")
     Warzone.BattleServer.submit_code(code_content)
-    IO.inspect("got stuff: #{inspect(value)}")
     {:noreply, assign(socket, code_content: code_content, deploy_step: "Code...")}
-  end
-
-  def handle_event("apply_code", _value, socket) do
-    IO.puts("code going in")
-    {:noreply, assign(socket, deploy_step: "Load...")}
   end
 
   def handle_event("show_code", _value, socket) do
@@ -39,26 +30,6 @@ defmodule SandwarWeb.HomeView do
   end
 
   def handle_info({:ship_status, ship}, socket) do
-    v = inspect(ship.velocity)
-    #    status = inspect(ship.ai_error)
-    #    "...compilation sucessful, ai engaged..."
-
-    #    display_values =
-    #    [:speed, :facing, :position]
-    #    |> Enum.into(%{}, fn k -> {k, Map.get(ship, k)} end)
-    #    |> Map.put(:code_status, get_compilation_status_message(ship.ai_error))
-    #    |> Map.to_list()
-
-    #    display_values = %{
-    #      hull: render_number(ship.hull, 0),
-    #      energy: render_number(ship.hull, 0),
-    #      speed: render_number(ship.speed, 2),
-    #      facing: render_number(ship.facing, 2),
-    #      left: "50%",
-    #      top: "50%",
-    #      code_status: get_compilation_status_message(ship.ai_error)
-    #    }
-
     {:noreply, assign(socket, get_ship_display(ship))}
   end
 
@@ -76,7 +47,9 @@ defmodule SandwarWeb.HomeView do
       cloaking_power: render_number(ship.cloaking_power, 0),
       code_status: get_compilation_status_message(ship.ai_error),
       missiles: Map.get(ship.display, :missiles, []),
-      ships: Map.get(ship.display, :ships, [])
+      ships: Map.get(ship.display, :ships, []),
+      playing: ship.playing,
+      spawn_counter: ship.spawn_counter
     }
   end
 
@@ -99,18 +72,19 @@ defmodule SandwarWeb.HomeView do
     reason
   end
 
+  def random_name() do
+    "anon_" <> to_string(trunc(:rand.uniform() * 100_000))
+  end
+
   def mount(session, socket) do
     if connected?(socket), do: Warzone.BattleServer.join()
 
-    #    data = %{code_content: "hello", code_error: "cat man"}
-    #    types = %{code_content: :string, code_error: :string}
-    #    cs = Ecto.Changeset.cast({data, types}, %{code_content: "world", code_error: "hello"}, [:code_content, :code_error])
 
     current_user = Map.get(session, :current_user)
     user_name = Map.get(session, :user_name)
-    login = Map.get(session, :login)
+    login = Map.get(session, :login, random_name())
     IO.inspect(session)
-    IO.puts("cu #{inspect(current_user)}")
+
 
     {:ok,
      assign(socket,
@@ -129,7 +103,9 @@ defmodule SandwarWeb.HomeView do
        scanning_radius: 0,
        position: [0, 0],
        code_content: "",
-       code_status: ""
+       code_status: "",
+       playing: false,
+       spawn_counter: 30
      )}
   end
 end
