@@ -3,6 +3,8 @@
 /deps/
 /doc/
 /node_modules/
+node_modules/
+/assets/nodule_modules
 /priv/static/
 /.fetch
 erl_crash.dump
