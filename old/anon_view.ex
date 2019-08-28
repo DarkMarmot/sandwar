@@ -1,4 +1,4 @@
-defmodule SandwarWeb.AnonView do
+defmodule SandwarWeb.AnonViewX do
   use Phoenix.LiveView
 
   def render(assigns) do

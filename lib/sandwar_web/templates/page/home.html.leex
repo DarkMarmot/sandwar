@@ -80,7 +80,7 @@
                     <% xp = to_string(trunc(missile.x)) <> "px" %>
                     <% yp = to_string(trunc(-missile.y)) <> "px" %>
                     <div style="transform: translate(-50%, -50%); position: absolute;">
-                        <div id="<%= missile.name %>" class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>) rotate(<%= trunc(missile.facing) %>deg)" ></div>
+                        <div class="missile" style="position: relative; width: <%= size %>; height: <%= size %>;  transform: translate(<%= xp %>,<%= yp %>);" ></div>
                     </div>
 
                     <% end %>
@@ -90,7 +90,7 @@
                     <% yp = to_string(trunc(-ship.y)) <> "px" %>
                     <div class="centered_transform_holder" >
                         <div id="<%= ship.name %>" class="ship" style="position: relative; transform: translate(<%= xp %>,<%= yp %>)" >
-                            <div style="position: absolute; transform: translate(-50%, -100%); text-align: center;" > <%= @login %> </div>
+                            <div style="font-size: 22px; position: absolute; transform: translate(-50%, -90%); text-align: center;" > <%= ship.name %> </div>
                         </div>
                     </div>
                     <% end %>

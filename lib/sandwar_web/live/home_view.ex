@@ -8,7 +8,7 @@ defmodule SandwarWeb.HomeView do
   def handle_event("submit_code", value, socket) do
     code_content = Map.get(value, "code_content")
     Warzone.BattleServer.submit_code(code_content)
-    {:noreply, assign(socket, code_content: code_content, deploy_step: "Code...")}
+    {:noreply, assign(socket, code_content: code_content)}
   end
 
   def handle_event("show_code", _value, socket) do
@@ -77,14 +77,12 @@ defmodule SandwarWeb.HomeView do
   end
 
   def mount(session, socket) do
-    if connected?(socket), do: Warzone.BattleServer.join()
-
 
     current_user = Map.get(session, :current_user)
     user_name = Map.get(session, :user_name)
     login = Map.get(session, :login, random_name())
-    IO.inspect(session)
 
+    if connected?(socket), do: Warzone.BattleServer.join(login)
 
     {:ok,
      assign(socket,
