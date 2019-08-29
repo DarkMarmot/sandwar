@@ -52,7 +52,7 @@ defmodule SandwarWeb.HomeView do
       spawn_counter: ship.spawn_counter,
       messages: ship.messages,
       missile_color: ship.missile_color,
-      stardate: ship.stardate
+      stardate: ship.age
     }
   end
 

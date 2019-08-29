@@ -74,7 +74,9 @@
 
             <div style="position: absolute; bottom: 0; right: 0; width: 400px; height: 500px; font-size: 20px;">
                 <%= for msg <- @messages do %>
-                <div style="position: relative;"><%= msg.text %></div>
+                  <% age = min(@stardate - msg.stardate, 20) %>
+                  <% opacity = 1.0 - age / 20.0 %>
+                <div style="position: relative; opacity: <%= opacity %>;"><%= msg.text %></div>
                 <% end %>
             </div>
 
