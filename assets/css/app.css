@@ -11,6 +11,19 @@ body {
     overflow: hidden;
 }
 
+.login_button {
+    padding: 10px;
+    margin: 20px;
+    font-size: 30px;
+    color: white;
+    background: blueviolet;
+}
+
+.login_button:hover {
+    color: blueviolet;
+    background: white;
+}
+
 .code_box{
     position: absolute;
     z-index: 10;

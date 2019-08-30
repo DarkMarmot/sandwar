@@ -3,21 +3,22 @@
       <%= if @current_user do %>
         <h2>Welcome, <%= @current_user.name %>!</h2>
         <img src="<%= @current_user.avatar %>" class="img-circle"/>
-        <a class="btn btn-primary btn-lg" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :index %>">
+        <a class="login_button" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :index %>">
           <i class="fa fa-github"></i>
           Play Sandwar
         </a>
-        <%= link "Logout", to: SandwarWeb.Router.Helpers.auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
+
+        <%= link "Logout", to: SandwarWeb.Router.Helpers.auth_path(@conn, :delete), method: :delete, class: "login_button" %>
       <% else %>
         <br>
         <br>
 
-        <a class="btn btn-primary btn-lg" href="<%= SandwarWeb.Router.Helpers.auth_path @conn, :index, "github" %>">
+        <a class="login_button" href="<%= SandwarWeb.Router.Helpers.auth_path @conn, :index, "github" %>">
           <i class="fa fa-github"></i>
           Sign in with GitHub
         </a>
 
-        <a class="btn btn-primary btn-lg" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :anon %>">
+        <a class="login_button" href="<%= SandwarWeb.Router.Helpers.page_path @conn, :anon %>">
           <i class="fa fa-github"></i>
           Skip Login
         </a>

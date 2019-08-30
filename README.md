@@ -8,29 +8,28 @@ Basic Game Rules:
 2) Your screen will be centered on a radar display with a limited view of your surroundings.
 3) Every few seconds, your AI routine will be executed so that it can issue commands.
 4) Available commands (up to 10 energy max for each):
-    1) `thrust(energy)` - moves your ship
-    2) `face(direction)` - instantly face a given direction (0 to 360 degrees), expends no energy
-    3) `turn(direction)` - instantly turns (0 to 360 degrees), expends no energy
-    4) `scan(energy)` - increases your radar range and uncovers cloaked ships
-    5) `cloak(energy)` - blocks radar tracking
-    6) `fire(energy)` - fires a missile whose damage and range increase with energy
+    * `thrust(energy)` - moves your ship
+    * `face(direction)` - instantly face a given direction (0 to 360 degrees), expends no energy
+    * `turn(direction)` - instantly turns (0 to 360 degrees), expends no energy
+    * `scan(energy)` - increases your radar range and uncovers cloaked ships
+    * `cloak(energy)` - blocks radar tracking
+    * `fire(energy)` - fires a missile whose damage and range increase with energy
 5) Your AI will run with a `status` table preset with current conditions.
-    1) `status.x` - your x position in space
-    2) `status.y` - your y position in space
-    3) `status.hull` - your current ship health, starts at 100
-    4) `status.energy` - your current energy, starts at 100, recovers 20 per AI round
-    5) `status.ships` - list of ships detected by your last radar scan (with `distance`, `direction` and `name`)
-    6) `status.missiles` - list of missiles detected by your last radar scan (with `distance` and `direction` -- currently missing :( )
+    * `status.x` - your x position in space
+    * `status.y` - your y position in space
+    * `status.hull` - your current ship health, starts at 100
+    * `status.energy` - your current energy, starts at 100, recovers 20 per AI round
+    * `status.ships` - list of ships detected by your last radar scan (with `distance`, `direction` and `name`)
+    * `status.missiles` - list of missiles detected by your last radar scan (with `distance` and `direction` -- currently missing :( )
 6) There is a `nearest(list)` function that can be used to find the closest missile or ship, e.g. `ship = nearest(status.ships)`
      
 Example ship AIs:
 
 ### RANDOM BURST AI
 ```lua
- scan(4)
- s = status.age
- -- every 4th AI round, blast a bunch of random missiles
- if math.floor(s) % 4 == 0 then
+scan(4)
+
+ if status.stardate % 4 == 0 then
    for i = 1,12 do
      face(math.random(360))
      fire(math.random(10))
